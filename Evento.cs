@@ -56,7 +56,7 @@ public class Evento
 
 
 
-    public string PrenotaPosti(int prenotazione)
+    public void PrenotaPosti(int prenotazione)
     {
        
 
@@ -72,10 +72,17 @@ public class Evento
         }
 
         Prenotazioni++;
+    }
 
+    public void DisdiciPosti()
+    {
+        DateOnly actualDate = new DateOnly();
+        if (actualDate < Data)
+        {
+            throw new GestoreEventiException("L'evento è già passato");
+        }
 
-
-        return "Prenotazione avvenuta con successo";
+        Prenotazioni--;
     }
 
 
