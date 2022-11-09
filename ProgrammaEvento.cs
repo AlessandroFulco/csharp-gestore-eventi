@@ -1,31 +1,44 @@
-﻿public class ProgrammaEvento
+﻿using csharp_gestore_eventi.Errori;
+public class ProgrammaEvento
 {
     //proprietà
     public string Titolo { get; set; }
-    List<Evento> eventi { get; set; }
+    List<Evento> Eventi { get; set; }
 
     //costruttore
     public ProgrammaEvento(string titolo)
     {
         Titolo = titolo;
-        eventi = new List<Evento>();
+        Eventi = new List<Evento>();
     }
 
     //metodi
-    public void AggingiEventoLista(Evento evento)
+    public void AggingiEvento(Evento ev)
     {
+        Evento evento = ev;
 
-        //algoritmo
-        
+        Eventi.Add(evento);
     }
 
     public List<Evento> ListaEventi(DateOnly data)
     {
-        List<Evento> lista = new List<Evento>();
+        List<Evento> result = new List<Evento>();
 
-        //algoritmo
+        foreach(Evento ev in Eventi)
+        {
+            if(ev.Data == data)
+            {
+                result.Add(ev);
+            }
+        }
+        
+        if(result.Count <= 0)
+        {
+            throw new GestoreEventiException("Non ci sono eventi in quella data");
+        }
 
-        return lista;
+
+        return result;
     }
 
     public static void StampaLista(List<Evento> lista)

@@ -16,7 +16,7 @@ public class Evento
         
         set
         {
-            if (value == "")
+            if (value == "" || value == null)
             {
                 throw new GestoreEventiException("Devi inserire il titolo dell'evento");
             }
