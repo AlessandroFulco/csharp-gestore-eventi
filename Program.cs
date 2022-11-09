@@ -45,6 +45,30 @@ while (continua)
                 evento.PrenotaPosti(inputUtente);
                 Console.WriteLine(evento.StampaCapienzaPrenotazioni());
 
+                Console.WriteLine();
+                
+
+                bool disdire = true;
+                while (disdire)
+                {
+                    Console.WriteLine("Vuoi disdire dei posti (si/no)? ");
+                    string scelta = Console.ReadLine();
+                    if (scelta == "si")
+                    {
+                        Console.WriteLine("Indica il numero dei posti che vuoi disdire: ");
+                        int inputDisdirePosti = Convert.ToInt32(Console.ReadLine());
+
+                        evento.DisdiciPosti(inputDisdirePosti);
+                        Console.WriteLine(evento.StampaCapienzaPrenotazioni());
+                    }
+                    else
+                    {
+                        disdire = false;
+                        Console.WriteLine();
+                        Console.WriteLine("Ok va bene!");
+                    }
+                }
+                Console.WriteLine();
 
 
                 //Console.WriteLine(evento.ToString());

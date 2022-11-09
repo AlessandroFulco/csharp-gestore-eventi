@@ -73,15 +73,15 @@ public class Evento
         Capienza -= numero;
     }
 
-    public void DisdiciPosti()
+    public void DisdiciPosti(int numero)
     {
-        DateOnly actualDate = new DateOnly();
-        if (actualDate < Data)
+        if (DateOnly.FromDateTime(DateTime.Now) > Data)
         {
             throw new GestoreEventiException("L'evento è già passato");
         }
 
-        Prenotazioni--;
+        Prenotazioni -= numero;
+        Capienza += numero;
     }
 
     public override string ToString()
