@@ -2,56 +2,59 @@
 
 public class Evento
 {
+    private string _titolo;
+    private DateOnly _data;
+    private int _capienza;
+
     public int Prenotazioni { get; private set; }
     public string Titolo
     {
-        get { return Titolo; }
-
+        get { return _titolo; }
+        
         set
         {
-            if(Titolo == "")
+            if (value == "")
             {
                 throw new GestoreEventiException("Devi inserire il titolo dell'evento");
             }
-            
-            Titolo = value;
+            _titolo = value;
         }
     }
     public DateOnly Data
     {
-        get { return Data; }
+        get { return _data; }
 
         set
         {
-            if(Data < new DateOnly())
+
+            if (_data < new DateOnly())
             {
                 throw new GestoreEventiException("La data non puo essere precente a quella di oggi");
             }
-
-            Data = value;
+            _data = value;
         }
     }
     public int Capienza
     {
-        get { return Capienza; }
+        get { return _capienza; }
 
         private set
         {
-            if(value < 0)
+            if (value < 0)
             {
                 throw new GestoreEventiException("La capienza massima deve essere un numero positivo");
             }
 
-            Capienza = value;
+            _capienza = value;
         }
     }
 
     public Evento(string titolo, DateOnly data, int capienza)
     {
-        Prenotazioni = 0;
         Titolo = titolo;
         Data = data;
         Capienza= capienza;
+        Prenotazioni = 0;
     }
 
 
@@ -83,6 +86,12 @@ public class Evento
         }
 
         Prenotazioni--;
+    }
+
+    public override string ToString()
+    {
+        string DataFormattata = Data.ToString("dd/MM/yyyy");
+        return "L'evento in data:\t" + DataFormattata + "\t, titolo:\t" + Titolo;
     }
 
 
