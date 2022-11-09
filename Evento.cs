@@ -57,14 +57,9 @@ public class Evento
         Prenotazioni = 0;
     }
 
-
-
     public void PrenotaPosti(int numero)
     {
-       
-
-        DateOnly actualDate = new DateOnly();
-        if(actualDate < Data)
+        if(DateOnly.FromDateTime(DateTime.Now) > Data)
         {
             throw new GestoreEventiException("L'evento è già passato");
         }
@@ -75,6 +70,7 @@ public class Evento
         }
 
         Prenotazioni += numero;
+        Capienza -= numero;
     }
 
     public void DisdiciPosti()
@@ -93,6 +89,12 @@ public class Evento
         string DataFormattata = Data.ToString("dd/MM/yyyy");
         return "L'evento in data:\t" + DataFormattata + "\t titolo:\t" + Titolo;
     }
+
+    public string StampaCapienzaPrenotazioni()
+    {
+        return "Numero di posti prenotati = "+ Prenotazioni +"\nNumero di posti disponibili = " + Capienza ;
+    }
+    
 
 
     //fine classe

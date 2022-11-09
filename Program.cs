@@ -14,6 +14,7 @@ Console.WriteLine();
 bool continua = true;
 while (continua)
 {
+    Console.WriteLine();
     Console.WriteLine("Scegli la voce di menu'");
     Console.WriteLine();
     Console.WriteLine("1. Crea nuovo evento");
@@ -37,12 +38,25 @@ while (continua)
             try
             {
                 Evento evento = new Evento(nome, data, capienza);
-                Console.WriteLine(evento.ToString());
+
+                //TODO: gestire eccezioni
+                Console.WriteLine("Quanti posti desideri prenotare?");
+                int inputUtente = Convert.ToInt32(Console.ReadLine());
+                evento.PrenotaPosti(inputUtente);
+                Console.WriteLine(evento.StampaCapienzaPrenotazioni());
+
+
+
+                //Console.WriteLine(evento.ToString());
             }
             catch (GestoreEventiException e)
             {
                 Console.WriteLine(e);
             }
+
+            
+            
+
             break;
 
         case 2:
