@@ -2,11 +2,14 @@
 
 public class Evento
 {
+    //attributi
     private string _titolo;
     private DateOnly _data;
     private int _capienza;
 
+    //Proprietà
     public int Prenotazioni { get; private set; }
+
     public string Titolo
     {
         get { return _titolo; }
@@ -20,6 +23,7 @@ public class Evento
             _titolo = value;
         }
     }
+
     public DateOnly Data
     {
         get { return _data; }
@@ -34,6 +38,7 @@ public class Evento
             _data = value;
         }
     }
+
     public int Capienza
     {
         get { return _capienza; }
@@ -49,6 +54,7 @@ public class Evento
         }
     }
 
+    //costruttore
     public Evento(string titolo, DateOnly data, int capienza)
     {
         Titolo = titolo;
@@ -57,6 +63,7 @@ public class Evento
         Prenotazioni = 0;
     }
 
+    //metodi
     public void PrenotaPosti(int numero)
     {
         if(DateOnly.FromDateTime(DateTime.Now) > Data)
@@ -94,8 +101,6 @@ public class Evento
     {
         return "Numero di posti prenotati = "+ Prenotazioni +"\nNumero di posti disponibili = " + Capienza ;
     }
-    
-
 
     //fine classe
 }
