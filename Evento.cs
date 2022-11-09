@@ -27,7 +27,7 @@ public class Evento
         set
         {
 
-            if (_data < new DateOnly())
+            if (value < DateOnly.FromDateTime(DateTime.Now))
             {
                 throw new GestoreEventiException("La data non puo essere precente a quella di oggi");
             }
@@ -40,7 +40,7 @@ public class Evento
 
         private set
         {
-            if (value < 0)
+            if (value <= 0)
             {
                 throw new GestoreEventiException("La capienza massima deve essere un numero positivo");
             }
@@ -59,7 +59,7 @@ public class Evento
 
 
 
-    public void PrenotaPosti(int prenotazione)
+    public void PrenotaPosti(int numero)
     {
        
 
@@ -69,12 +69,12 @@ public class Evento
             throw new GestoreEventiException("L'evento è già passato");
         }
 
-        if(Prenotazioni >= Capienza)
+        if(Capienza < Prenotazioni + numero)
         {
             throw new GestoreEventiException("L'evento non ha posti disponibili");
         }
 
-        Prenotazioni++;
+        Prenotazioni += numero;
     }
 
     public void DisdiciPosti()
@@ -91,7 +91,7 @@ public class Evento
     public override string ToString()
     {
         string DataFormattata = Data.ToString("dd/MM/yyyy");
-        return "L'evento in data:\t" + DataFormattata + "\t, titolo:\t" + Titolo;
+        return "L'evento in data:\t" + DataFormattata + "\t titolo:\t" + Titolo;
     }
 
 
