@@ -75,7 +75,7 @@
 //            }
 //            catch (GestoreEventiException e)
 //            {
-//                Console.WriteLine(e);
+//                Console.WriteLine(e.Message);
 //            }
 
 
@@ -97,4 +97,4 @@
 
 ProgrammaEvento pe = new ProgrammaEvento("programma 1");
 Evento ev = new Evento("prova", new DateOnly(2022, 11, 11), 200);
-pe.AggingiEventoLista(ev);
+pe.AggingiEvento(ev);

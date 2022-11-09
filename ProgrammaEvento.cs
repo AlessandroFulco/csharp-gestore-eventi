@@ -41,9 +41,17 @@ public class ProgrammaEvento
         return result;
     }
 
-    public static void StampaLista(List<Evento> lista)
+    //da testare
+    public static string StampaLista(List<Evento> eventi)
     {
-        //algoritmo
+        List<Evento> lista = eventi;
+        string result = "";
+        foreach(Evento ev in lista)
+        {
+            result += "Titolo: ";
+        }
+            return result;
+
     }
 
     public int ContatoreEventi()
