@@ -26,6 +26,11 @@ public class ProgrammaEvento
     }
 
     //metodi
+
+    public List<Evento> ListaEventi()
+    {
+        return Eventi;
+    }
     public bool AggingiEvento(Evento ev)
     {
         Evento evento = ev;

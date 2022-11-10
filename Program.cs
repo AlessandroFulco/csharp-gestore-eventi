@@ -81,7 +81,7 @@ while (continua)
             string inputNome = "";
             try
             {
-                
+
                 Console.Write("Inserisci il nome del programma eventi: ");
                 inputNome = Console.ReadLine();
 
@@ -90,7 +90,7 @@ while (continua)
                 Console.Write("Indica il numero di eventi da inserire: ");
                 int sceltaQtyEventi = Convert.ToInt32(Console.ReadLine());
                 //TODO: Controllare stringa vuota
-                if(sceltaQtyEventi == 0)
+                if (sceltaQtyEventi == 0)
                 {
                     throw new GestoreEventiException("Devi inserire almeno un evento!");
                 }
@@ -122,7 +122,7 @@ while (continua)
                         Console.WriteLine(e.Message);
                     }
 
-                    
+
                     //uscita dal ciclo while per la richiesta degli eventi
                     if (contatore == sceltaQtyEventi)
                         continua2 = false;
@@ -134,7 +134,7 @@ while (continua)
 
                 Console.Write("Inserisci la data in cui vuoi sapere che eventi ci sono: ");
                 string dataInput3 = Console.ReadLine();
-                DateOnly data3 = DateOnly.Parse(dataInput3); 
+                DateOnly data3 = DateOnly.Parse(dataInput3);
 
                 Console.WriteLine(ProgrammaEvento.StampaLista(pe.ListaEventi(data3)));
 
@@ -158,12 +158,14 @@ while (continua)
 
                 Console.WriteLine("Inserisci il prezzo del biglietto della conferenza: ");
                 double costoConferenza = Convert.ToDouble(Console.ReadLine());
-                
-                Conferenza conferenza = new Conferenza(relatoreConferenza, costoConferenza, nomeConferenza, dataConferenza, capienzaConferenza);
 
+                Conferenza conferenza = new Conferenza(relatoreConferenza, costoConferenza, nomeConferenza, dataConferenza, capienzaConferenza);
+                pe.AggingiEvento(conferenza);
                 Console.WriteLine();
 
                 Console.WriteLine(conferenza.ToString());
+
+                ImportExportFile.EsportaDati(pe.ListaEventi());
             }
             catch (GestoreEventiException e)
             {
@@ -184,3 +186,9 @@ while (continua)
             break;
     }
 }
+
+
+
+
+
+
