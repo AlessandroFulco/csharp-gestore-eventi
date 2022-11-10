@@ -26,10 +26,13 @@ public class ProgrammaEvento
     }
 
     //metodi
-    public void AggingiEvento(Evento ev)
+    public bool AggingiEvento(Evento ev)
     {
         Evento evento = ev;
-
+        if (evento.Data < DateOnly.FromDateTime(DateTime.Today))
+        {
+            throw new GestoreEventiException("La data non può essere precedente a quella di oggi");
+        }
 
         if (evento == null)
         {
@@ -37,6 +40,7 @@ public class ProgrammaEvento
         }
 
         Eventi.Add(evento);
+        return true;
     }
 
     public List<Evento> ListaEventi(DateOnly data)
@@ -73,7 +77,7 @@ public class ProgrammaEvento
 
     }
 
-    public int ContatoreEventi()
+    public string ContatoreEventi()
     {
         int contatore = 0;
 
@@ -84,12 +88,13 @@ public class ProgrammaEvento
 
         contatore = Eventi.Count;
 
-        return contatore;
+        return "Il numero di eventi nel programma è: " + contatore;
     }
 
-    public void SvuotaLista()
+    public string SvuotaLista()
     {
         Eventi = new List<Evento>();
+        return "Gli eventi sono stati cancellati con successo";
     }
 
     public string StampaProgramma()
@@ -98,7 +103,7 @@ public class ProgrammaEvento
 
         foreach(Evento ev in Eventi)
         {
-            result += ev.ToString() + "\n";
+            result +=  "\t" + ev.ToString() + "\n";
         }
 
         return result;

@@ -65,7 +65,7 @@ public class Evento
     //metodi
     public void PrenotaPosti(int numero)
     {
-        if(DateOnly.FromDateTime(DateTime.Today) < Data)
+        if(DateOnly.FromDateTime(DateTime.Today) > Data)
         {
             throw new GestoreEventiException("L'evento è già passato");
         }
@@ -93,7 +93,8 @@ public class Evento
     public override string ToString()
     {
         string DataFormattata = Data.ToString("dd/MM/yyyy");
-        return "L'evento in data:\t" + DataFormattata + "\t titolo:\t" + Titolo;
+        //return "L'evento in data:\t" + DataFormattata + "\t titolo:\t" + Titolo;
+        return DataFormattata + " - " + Titolo;
     }
 
     public string StampaCapienzaPrenotazioni()
