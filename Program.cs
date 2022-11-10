@@ -76,22 +76,26 @@ while (continua)
 
         case 2:
             Console.WriteLine();
+            string inputNome = "";
             try
             {
-                //richiesta nome programma eventi
-                Console.Write("Inserisci il nome del tuo programma Eventi: ");
-                string inputNome = Console.ReadLine();
-                Console.WriteLine();
-
-                //richiesta quanti eventi vuole aggiungere
-                Console.Write("Indica il numero di eventi da inserire : ");
-                int inputScelta = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine();
+                Console.Write("Inserisci il nome del programma eventi: ");
+                inputNome = Console.ReadLine();
 
                 ProgrammaEvento pe = new ProgrammaEvento(inputNome);
 
-                for(int i = 0; i < inputScelta; i++)
+                Console.Write("Quanti eventi vuoi inserire? ");
+                int sceltaQtyEventi = Convert.ToInt32(Console.ReadLine());
+                //TODO: Controllare stringa vuota
+                if(sceltaQtyEventi == 0)
                 {
+                    throw new GestoreEventiException("Devi inserire almeno un evento!");
+                }
+                int contatore = 0;
+                bool continua2 = true;
+                while (continua2)
+                {
+                    
                     //crea nuovo evento
                     Console.Write("Inserisci il Titolo dell'evento: ");
                     string nome2 = Console.ReadLine();
@@ -102,55 +106,34 @@ while (continua)
 
                     Console.Write("Inserisci la capienza massima: ");
                     int capienza2 = Convert.ToInt32(Console.ReadLine());
+
                     try
                     {
-                        Evento evento = new Evento(nome2, data, capienza2);
-
-                        //TODO: gestire eccezioni
-                        Console.WriteLine("Quanti posti desideri prenotare?");
-                        int inputUtente = Convert.ToInt32(Console.ReadLine());
-                        evento.PrenotaPosti(inputUtente);
-                        Console.WriteLine(evento.StampaCapienzaPrenotazioni());
-
-                        Console.WriteLine();
-
-
-                        bool disdire = true;
-                        while (disdire)
-                        {
-                            Console.WriteLine("Vuoi disdire dei posti (si/no)? ");
-                            string scelta = Console.ReadLine();
-                            if (scelta == "si")
-                            {
-                                Console.WriteLine("Indica il numero dei posti che vuoi disdire: ");
-                                int inputDisdirePosti = Convert.ToInt32(Console.ReadLine());
-
-                                evento.DisdiciPosti(inputDisdirePosti);
-                                Console.WriteLine(evento.StampaCapienzaPrenotazioni());
-                            }
-                            else
-                            {
-                                disdire = false;
-                                Console.WriteLine();
-                                Console.WriteLine("Ok va bene!");
-                            }
-                        }
-                        Console.WriteLine();
-
-
-                        //Console.WriteLine(evento.ToString());
+                        Evento ev = new Evento(nome2, data2, capienza2);
                     }
                     catch (GestoreEventiException e)
                     {
                         Console.WriteLine(e.Message);
                     }
+
+
+
+
+                    //uscita dal ciclo while per la richiesta degli eventi
+                    contatore++;
+                    if (contatore == sceltaQtyEventi)
+                        continua2 = false;
                 }
+
+                
 
             }
             catch (GestoreEventiException e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            
 
             
 

@@ -30,8 +30,7 @@ public class Evento
 
         set
         {
-
-            if (value > DateOnly.FromDateTime(DateTime.Now))
+            if (value > DateOnly.FromDateTime(DateTime.Today))
             {
                 throw new GestoreEventiException("La data non puo essere precente a quella di oggi");
             }
@@ -66,7 +65,7 @@ public class Evento
     //metodi
     public void PrenotaPosti(int numero)
     {
-        if(DateOnly.FromDateTime(DateTime.Now) < Data)
+        if(DateOnly.FromDateTime(DateTime.Today) < Data)
         {
             throw new GestoreEventiException("L'evento è già passato");
         }
@@ -82,7 +81,7 @@ public class Evento
 
     public void DisdiciPosti(int numero)
     {
-        if (DateOnly.FromDateTime(DateTime.Now) > Data)
+        if (DateOnly.FromDateTime(DateTime.Today) > Data)
         {
             throw new GestoreEventiException("L'evento è già passato");
         }

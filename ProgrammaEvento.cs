@@ -17,7 +17,6 @@ public class ProgrammaEvento
         }
     }
     List<Evento> Eventi { get; set; }
-   
 
     //costruttore
     public ProgrammaEvento(string titolo)
@@ -30,6 +29,12 @@ public class ProgrammaEvento
     public void AggingiEvento(Evento ev)
     {
         Evento evento = ev;
+
+
+        if (evento == null)
+        {
+            throw new GestoreEventiException("Devi inserire l'evento per poter andare avanti");
+        }
 
         Eventi.Add(evento);
     }
