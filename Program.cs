@@ -138,11 +138,32 @@ while (continua)
 
                 Console.WriteLine(ProgrammaEvento.StampaLista(pe.ListaEventi(data3)));
 
-                Console.WriteLine("Premere invio per eliminare tutti gli eventi dal programma");
-                Console.ReadLine();
-                Console.WriteLine(pe.SvuotaLista());
+                //Console.WriteLine("Premere invio per eliminare tutti gli eventi dal programma");
+                //Console.ReadLine();
+                //Console.WriteLine(pe.SvuotaLista());
 
+                //crea nuova Conferenza
+                Console.Write("Inserisci il nome della conferenza: ");
+                string nomeConferenza = Console.ReadLine();
 
+                Console.Write("Inserisci la data: ");
+                string dataInputConferenza = Console.ReadLine();
+                DateOnly dataConferenza = DateOnly.Parse(dataInputConferenza);
+
+                Console.Write("Inserisci la capienza massima: ");
+                int capienzaConferenza = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Inserisci il nome del relatore: ");
+                string relatoreConferenza = Console.ReadLine();
+
+                Console.WriteLine("Inserisci il prezzo del biglietto della conferenza: ");
+                double costoConferenza = Convert.ToDouble(Console.ReadLine());
+                
+                Conferenza conferenza = new Conferenza(relatoreConferenza, costoConferenza, nomeConferenza, dataConferenza, capienzaConferenza);
+
+                Console.WriteLine();
+
+                Console.WriteLine(conferenza.ToString());
             }
             catch (GestoreEventiException e)
             {
