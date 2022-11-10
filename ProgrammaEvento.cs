@@ -1,9 +1,23 @@
 ﻿using csharp_gestore_eventi.Errori;
 public class ProgrammaEvento
 {
+    private string _titolo;
     //proprietà
-    public string Titolo { get; set; }
+    public string Titolo
+    {
+        get { return _titolo; }
+
+        set
+        {
+            if (value == "" || value == null)
+            {
+                throw new GestoreEventiException("Devi inserire il titolo del programma eventi");
+            }
+            _titolo = value;
+        }
+    }
     List<Evento> Eventi { get; set; }
+   
 
     //costruttore
     public ProgrammaEvento(string titolo)
@@ -24,6 +38,7 @@ public class ProgrammaEvento
     {
         List<Evento> result = new List<Evento>();
 
+
         foreach(Evento ev in Eventi)
         {
             if(ev.Data == data)
@@ -36,8 +51,7 @@ public class ProgrammaEvento
         {
             throw new GestoreEventiException("Non ci sono eventi in quella data");
         }
-
-
+        
         return result;
     }
 
@@ -48,7 +62,7 @@ public class ProgrammaEvento
         string result = "";
         foreach(Evento ev in lista)
         {
-            result += "Titolo: ";
+            result += "Titolo:\t" + ev.Titolo + ",\tdata:\t" + ev.Data + ",\tcapienza:\t" + ev.Capienza + ",\tposti prenotati:\t" + ev.Prenotazioni +"\n";
         }
             return result;
 
@@ -58,20 +72,31 @@ public class ProgrammaEvento
     {
         int contatore = 0;
 
-        //algoritmo
+        //foreach(Evento ev in Eventi)
+        //{
+        //    contatore++;
+        //}
+
+        contatore = Eventi.Count;
 
         return contatore;
     }
 
     public void SvuotaLista()
     {
-        //algoritmo
+        Eventi = new List<Evento>();
     }
 
     public string StampaProgramma()
     {
-        //algoritmo
-        return " ";
+        string result = "Nome programma evento: " + Titolo + "\n";
+
+        foreach(Evento ev in Eventi)
+        {
+            result += ev.ToString() + "\n";
+        }
+
+        return result;
     }
     
 
