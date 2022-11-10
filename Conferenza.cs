@@ -8,8 +8,8 @@ public class Conferenza : Evento
         Prezzo = prezzo;
     }
 
-    string _relatore;
-    double _prezzo;
+    public string _relatore;
+    public double _prezzo;
     public string Relatore
     {
         get { return _relatore; }
@@ -41,5 +41,10 @@ public class Conferenza : Evento
     public override string ToString()
     {
         return base.ToString() + " - " + Relatore + " - " + Prezzo.ToString("0.00") + " euro";
+    }
+
+    public override string ToCsv()
+    {
+        return Titolo + ";" + Data + ";" + Relatore + ";" + Prezzo.ToString("0.00") + base.ToCsv();
     }
 }

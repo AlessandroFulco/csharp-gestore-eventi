@@ -96,6 +96,10 @@ public class Evento
         //return "L'evento in data:\t" + DataFormattata + "\t titolo:\t" + Titolo;
         return DataFormattata + " - " + Titolo;
     }
+    public virtual string ToCsv()
+    {
+        return Titolo + ";" + Data;
+    }
 
     public string StampaCapienzaPrenotazioni()
     {

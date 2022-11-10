@@ -16,7 +16,7 @@ public class ProgrammaEvento
             _titolo = value;
         }
     }
-    List<Evento> Eventi { get; set; }
+    public List<Evento> Eventi { get; set; }
 
     //costruttore
     public ProgrammaEvento(string titolo)

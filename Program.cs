@@ -77,6 +77,9 @@ while (continua)
             break;
 
         case 2:
+
+
+
             Console.WriteLine();
             string inputNome = "";
             try
@@ -86,6 +89,12 @@ while (continua)
                 inputNome = Console.ReadLine();
 
                 ProgrammaEvento pe = new ProgrammaEvento(inputNome);
+
+
+                //importa eventi o conferenze da file
+                pe.Eventi = ImportExportFile.ImportaDati();
+
+                Console.WriteLine(pe.StampaProgramma());
 
                 Console.Write("Indica il numero di eventi da inserire: ");
                 int sceltaQtyEventi = Convert.ToInt32(Console.ReadLine());
