@@ -30,7 +30,7 @@ public class Evento
 
         set
         {
-            if (value > DateOnly.FromDateTime(DateTime.Today))
+            if (value < DateOnly.FromDateTime(DateTime.Today))
             {
                 throw new GestoreEventiException("La data non puo essere precente a quella di oggi");
             }
